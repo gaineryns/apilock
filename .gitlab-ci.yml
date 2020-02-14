@@ -1,8 +1,8 @@
 stages:
   - build
   - deploy
-variables:
-    DOCKER_HOST: "tcp://0.0.0.0:2375"
+# variables:
+#     DOCKER_HOST: "tcp://0.0.0.0:2375"
 
 build-image:
   stage: build
