@@ -1,11 +1,20 @@
 stages:
   - build
+  - image
   - deploy
-# variables:
-#     DOCKER_HOST: "tcp://0.0.0.0:2375"
 
-build-image:
+build:
   stage: build
+  image: golang
+  script:
+    - GOOS=linux go build -o ./app .
+  artifacts:
+    paths:
+      - ./app
+    expire_in: 1 days
+
+build_image:
+  stage: image
   image: docker
   variables:
     DOCKER_DRIVER:  "overlay2"
@@ -23,6 +32,7 @@ deploy_master:
   image:
     name: registry.gitlab.com/devops_homeserve/deployer:latest
   variables:
+    DOCKER_HOST: "tcp://docker:2375"
     DOCKER_DRIVER:  "overlay2"
     DOCKER_TLS_CERTDIR: ""
   services:
@@ -30,8 +40,6 @@ deploy_master:
   script:
     - deployer deploy -l debug
   when: manual
-  dependencies:
-    - build-image
   artifacts:
     name: deployer.plan
     paths:
