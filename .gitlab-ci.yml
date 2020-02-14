@@ -1,0 +1,42 @@
+stages:
+  - build
+  - deploy
+variables:
+    DOCKER_HOST: "tcp://0.0.0.0:2375"
+
+build-image:
+  stage: build
+  image: docker
+  variables:
+    DOCKER_DRIVER:  "overlay2"
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
+    - docker build -f ./docker/prod/Dockerfile -t registry.gitlab.com/${CI_PROJECT_PATH}:latest -t registry.gitlab.com/${CI_PROJECT_PATH}:${CI_COMMIT_SHA} .
+    - docker push registry.gitlab.com/${CI_PROJECT_PATH}:${CI_COMMIT_SHA}
+    - docker push registry.gitlab.com/${CI_PROJECT_PATH}:latest
+
+deploy_master:
+  stage: deploy
+  image:
+    name: registry.gitlab.com/devops_homeserve/deployer:latest
+  variables:
+    DOCKER_DRIVER:  "overlay2"
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:dind
+  script:
+    - deployer deploy -l debug
+  when: manual
+  dependencies:
+    - build-image
+  artifacts:
+    name: deployer.plan
+    paths:
+      - .gitlab-ci.yml
+      - platform.yaml
+      - .states
+      - .Terraform
+      - .Chart
