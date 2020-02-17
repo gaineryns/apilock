@@ -15,3 +15,4 @@
 FROM debian
 COPY ./app /app
 ENTRYPOINT /app
+EXPOSE 8080
