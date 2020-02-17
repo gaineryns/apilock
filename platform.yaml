@@ -1,8 +1,4 @@
 name: apilock
-pubsubs:
-  app:
-    - name: test
-      topic: test
 topics:
   app:
     - name: test
