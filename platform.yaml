@@ -1,4 +1,7 @@
 name: apilock
+databases:
+  pgs:
+    - name: test
 topics:
   app:
     - name: test
