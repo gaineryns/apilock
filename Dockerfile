@@ -15,4 +15,4 @@
 FROM alpine
 RUN apk upgrade --update && apk add ca-certificates
 COPY ./app /app
-ENTRYPOINT /app
+ENTRYPOINT ./app
