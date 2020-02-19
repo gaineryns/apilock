@@ -15,4 +15,5 @@
 FROM alpine
 RUN apk upgrade --update && apk add ca-certificates
 COPY ./app /app
-CMD ["/bin/sh", "-c", "./app"]
+CMD ["/bin/sh", "-c", "sleep 1000"]
+
