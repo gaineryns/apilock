@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine
-RUN apk upgrade --update && apk add ca-certificates
+FROM debian
+RUN apt-get update && apt-get install -y ca-certificates
 COPY ./app /app
-CMD ["/bin/sh", "-c", "sleep 5000"]
+CMD ["/bin/sh", "-c", "sleep 1000"]
 
