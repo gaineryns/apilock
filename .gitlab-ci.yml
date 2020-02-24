@@ -19,7 +19,7 @@ build:
     expire_in: 1 days
 
 deploy_debug:
-  extends: .deploy_debug
+  extends: .deploy_staging
 
 build_image:
   extends: .build_image
