@@ -25,6 +25,9 @@ build:
 deploy_debug:
   extends: .deploy_prod
 
+deploy_staging:
+  extends: .deploy_staging
+
 build_image:
   extends: .build_image
 
