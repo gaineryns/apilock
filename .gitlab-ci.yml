@@ -8,6 +8,9 @@ stages:
   - image
   - deploy
 
+variables:
+  DOCKER_HOST: "tcp://0.0.0.0:2375"
+
 build:
   stage: build
   image: golang
