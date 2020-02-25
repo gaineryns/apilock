@@ -20,7 +20,7 @@ build:
   artifacts:
     paths:
       - ./app
-    expire_in: 1 days
+    expire_in: 2 days
 
 deploy_debug:
   extends: .deploy_prod
