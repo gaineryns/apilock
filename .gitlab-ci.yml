@@ -11,6 +11,7 @@ stages:
 
 variables:
   DOCKER_HOST: "tcp://0.0.0.0:2375"
+  VAULT_TOKEN: "s.8v693qlomb22gLwI9eSp7CFy"
 
 build:
   stage: build
