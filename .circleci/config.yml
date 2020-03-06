@@ -22,6 +22,9 @@ jobs:
       CODECOV_TOKEN:"69cfad90-98e1-454e-9223-dc78ecccae6d"
     steps:
       - checkout
+      - run: |
+          export PATH=$PATH:$GOPATH/bin
+          go build
       - run:
           name: "Create a temp directory for artifacts"
           command: |
