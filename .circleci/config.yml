@@ -1,12 +1,13 @@
 # Golang CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-go/ for more details
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
       # specify the version
       - image: circleci/golang:1.9
+    working_directory: /go/src/github.com/gaineryns/apilock
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -36,3 +37,10 @@ jobs:
             mv coverage.html /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
+orbs:
+  codecov: codecov/codecov@1.0.2
+jobs:
+  build:
+    steps:
+      - codecov/upload:
+          file: /tmp/artifacts
