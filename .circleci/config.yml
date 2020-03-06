@@ -37,10 +37,4 @@ jobs:
             mv coverage.html /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
-orbs:
-  codecov: codecov/codecov@1.0.2
-coverage:
-  build:
-    steps:
-      - codecov/upload:
-          file: /tmp/artifacts
+
