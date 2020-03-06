@@ -19,8 +19,8 @@ jobs:
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
     #working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
-    environments:
-      CODECOV_TOKEN:"69cfad90-98e1-454e-9223-dc78ecccae6d"
+    #environments:
+      #CODECOV_TOKEN:"69cfad90-98e1-454e-9223-dc78ecccae6d"
     steps:
       - checkout
       - run: |
